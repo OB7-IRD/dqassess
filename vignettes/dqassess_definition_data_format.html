@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Mathieu Depetris (mathieu.depetris@ird.fr)" />
+
+<meta name="date" content="2019-04-02" />
+
+<title>Package dqassess definition data format</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Package dqassess definition data format</h1>
+<h4 class="author">Mathieu Depetris (<a href="mailto:mathieu.depetris@ird.fr">mathieu.depetris@ird.fr</a>)</h4>
+<h4 class="date">2019-04-02</h4>
+
+
+
+<ul>
+<li><a href="#using-a-definition-data-format">Using a definition data format</a></li>
+<li><a href="#definition-data-format-architecture">Definition data format architecture</a>
+<ul>
+<li><a href="#sheet-format_infos">Sheet “format_infos”</a></li>
+<li><a href="#sheet-slot">Sheet “slot”</a></li>
+<li><a href="#sheet-slots_hierarchy">Sheet “slots_hierarchy”</a></li>
+<li><a href="#sheet-slot-definition">Sheet slot definition</a></li>
+<li><a href="#categories-definitions">Categories definitions</a></li>
+<li><a href="#codelist-category">Codelist category</a></li>
+<li><a href="#numeric-category">Numeric category</a></li>
+<li><a href="#logical-category">Logical category</a></li>
+<li><a href="#text-category">Text category</a></li>
+<li><a href="#date-category">Date category</a></li>
+</ul></li>
+</ul>
+<div id="definition-data-format-description-and-utilisation" class="section level1">
+<h1>Definition data format : description and utilisation</h1>
+<div id="using-a-definition-data-format" class="section level2">
+<h2>Using a definition data format</h2>
+<p>All controls, and more generally verifications process, gravite around a definition data format. This element contains metadata and all the informations necessary to define your data. For example, this definition format was able to answers to the kind of questions:</p>
+<ul>
+<li>what is the structure of my data? Have I got several tables?</li>
+<li>I there are, what is the relations between my data?</li>
+<li>what is the type of my data? numeric, codelist, free text?</li>
+<li>…</li>
+</ul>
+<p>For explain how we can make and read this definition data format, we will use as example, the data from the RECOLAPE datacall. The caracteristics of the data collected were descibre in the following document (put link here).</p>
+<p>First of all, we will use a template for create an empty definition data format. This template, provide the squeleton or the initial architecture of the format definition. To have it, launch the code below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">format_db_empty &lt;-<span class="st"> </span><span class="kw">build_template_format_db</span>(<span class="dt">format_name =</span> <span class="st">&quot;name_format&quot;</span>) </code></pre></div>
+<p>This function create a R list. If you want to export it (in xlsx or xls format), you could use the function below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Don't forget to check function documentation with ?write_format_db_excel or help(write_format_db_excel)</span>
+<span class="kw">write_format_db_excel</span>(<span class="dt">format_db =</span> format_db_empty)</code></pre></div>
+<p>You can see an example of the empty template xlsx format definition <a href="link">here</a> and the example of the xlsx format definition for the RECOLAPE datacall <a href="link">here</a>.</p>
+<div id="definition-data-format-architecture" class="section level3">
+<h3>Definition data format architecture</h3>
+<p>In this section, we will explain the different sheets of the definition data format, thourght the empty template and the format definition for the RECOLAPE datacall.</p>
+<div id="sheet-format_infos" class="section level4">
+<h4>Sheet “format_infos”</h4>
+<p>The first sheet, “format_infos”, contains the name of the definition data format (colum “format_name”) and the indication of the format’s version (colum “format_version”).</p>
+<p>Even if the colum “format_name” doesn’t need a specific explanation, this parameter is the opportunity to introduce the notion of code style or notation style. Good writing style is like using correct punctuation: you can manage without it, but it sure makes things easier to read and especially avoid conflicts. Several rules and framework exist for maximization compatibility of your text. Here, we are only speaking about the most common advice :</p>
+<ul>
+<li>use significant word: use only short words, not sentence, which is representative of your global idea. For example, a good format name should inform the reader of the field of the definition data format without having to read if.</li>
+<li>use short sentence: shorter it will be easier to understand you text will be !</li>
+<li>avoid specific characters (, ; . : ! ? % &amp; ( ) # / * etc.), diacritics (accent, cedilla, etc.) and empty spaces (replace it by _). These kinds of elements should bring incompatibility and crash functions or code launch.</li>
+</ul>
+<p>Dealing with the colum “format_version”, there’s no imposed rule, just like the writing style, but here we decide to use specific semantic versioning : <major>.<minor>.<patch> The first number (<major>) is related to a major updated. It’s when you have added many new features or conceptual changes impacted whose directly to the user interface (typically the new user interface is not compatible with the previous). The second number (<minor>) is when you add functionality in a backwards-compatible manner. The third number (<patch>) is related to bug resolutions and more preciously when you make backwards-compatible bug fixes. If you want to know more about this kind of thing, you should go on <a href="http://semver.org">Semantic Versioning</a> or <a href="http://www.x.org/releases/X11R7.7/doc/xorg-docs/Versions.html">X.Org</a>.</p>
+<p>You can modify the version throught the parameter “format_version” (default on 0.1.0) in the function “build_format_db”.</p>
+</div>
+<div id="sheet-slot" class="section level4">
+<h4>Sheet “slot”</h4>
+<p>The second sheet, “slot”, contain all the table of your dataset. Each table is called a <strong>slot</strong>.</p>
+<p>In the RECOLAPE datacall example, the structure of the slot is that:</p>
+<table>
+<thead>
+<tr class="header">
+<th>slot_name</th>
+<th>mandatory</th>
+<th>definition_table</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>effort</td>
+<td>TRUE</td>
+<td>effort_table</td>
+</tr>
+<tr class="even">
+<td>landing</td>
+<td>TRUE</td>
+<td>landing_table</td>
+</tr>
+<tr class="odd">
+<td>sampling</td>
+<td>TRUE</td>
+<td>sampling_table</td>
+</tr>
+</tbody>
+</table>
+<p>We have 3 slots (=tables), each slot is mandatory (if not we should have FALSE as argument) and the name of the slot in the definition data format is indicated in the definition_table column. We will see that in the next section, but all these slots need a sheet named in according to the definition_table modalities.</p>
+</div>
+<div id="sheet-slots_hierarchy" class="section level4">
+<h4>Sheet “slots_hierarchy”</h4>
+<p>This sheet indicates is there are any relations between your slots. This information is related to the cardinality of your data. In database design and more precisely in the relation model, tables can be related as “one to many”, “many to many”, “one to one”, “zero to many”, ect… This kind of information leads very powerful constraints and ensure the consistency of your data.</p>
+<p>For understanding this specification, which seems complicated for several people foreign in the field of databases, Take a look on our data as an example. Here we have 3 slots and potentially 0 relation between them or a maximum of 6 relations (if each slot is related to another, on both sides). Like we said before, we can have a lot kind of relationship between data, but we should consider (for simplification) two levels:</p>
+<ul>
+<li>“one to many” relationship, this is a generalization of the major case (for example, a relation “one to one” is a specific case where many is egal to zero).</li>
+<li>“zero to many” relationship (this is the same argument as the relation before).</li>
+</ul>
+<p>For better understand a relation between two, a solution is to try to make a sentence which explain the relation. Let take an example between the effort slot and the landing slot. In our case, an effort data could be related to no landing (if non-catch during a set for example) or several landings (if we have a partial landing). Relation between the effort slot and the landing slot is a “zero to many” type. Similarly, a landing should be associated with one and only one effort (if landing append that mean an effort related to). The relation between the landing and the effort is a “one to many” type (if we generalize, with many egal to one). In the definition data format, this relation can be specified like that:</p>
+<table>
+<thead>
+<tr class="header">
+<th>link</th>
+<th>level_1</th>
+<th>level_2</th>
+<th>level_3</th>
+<th>level_4</th>
+<th>level_5</th>
+<th>level_6</th>
+<th>level_7</th>
+<th>level_8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>landing_effort</td>
+<td>flag_country</td>
+<td>vessel_id</td>
+<td>year</td>
+<td>month</td>
+<td>area</td>
+<td>fishing_level7</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>To define a relation in the definition data format, you don’t need to specify what kind of relation is but only direction of the link separated by “_&quot; (here landing to effort). The different levels are all the variables involved in the relation.</p>
+<p>For now, the following verification functions can use to check “one to many” relations. But the code was thought to be upgradable and it’s possible to add more verification type (also specific verification like “one to one” associated with her constraints). Furthermore, the default template of the sheet make available 8 levels of hierarchies, but the function could manage more than 8. Just add columns and keep the current nomenclature (“level_x”). Finally, if your data doesn’t present relationship (lucky you are !), just leave this sheet with the empty template.</p>
+<p>With our data, we can underscore two more relation “one to many”:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="14%"></col>
+<col width="11%"></col>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="7%"></col>
+<col width="12%"></col>
+<col width="12%"></col>
+<col width="10%"></col>
+<col width="11%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>link</th>
+<th>level_1</th>
+<th>level_2</th>
+<th>level_3</th>
+<th>level_4</th>
+<th>level_5</th>
+<th>level_6</th>
+<th>level_7</th>
+<th>level_8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sampling_landing</td>
+<td>flag_country</td>
+<td>vessel_id</td>
+<td>year</td>
+<td>area</td>
+<td>species</td>
+<td>fishing_level7</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>sampling_effort</td>
+<td>flag_country</td>
+<td>year</td>
+<td>vessel_id</td>
+<td>area</td>
+<td>fishing_level7</td>
+<td>species</td>
+<td>length_code</td>
+<td>length_class</td>
+</tr>
+</tbody>
+</table>
+<p>Here we have:</p>
+<ul>
+<li>a sampling could have one and only one landing associated (“one to many” relationship).</li>
+<li>a sampling could have one or several effort data associated (“one to many” relationship in case of partial landings).</li>
+</ul>
+</div>
+<div id="sheet-slot-definition" class="section level4">
+<h4>Sheet slot definition</h4>
+<p>The definition data format contains at least one slot definition in relation to slot define in the sheet “slot”.</p>
+<p>For our example, we would describre the slot definition of the slot “sampling”. You could also find the slot definition of the other slot in the definition data format of RECOLAPE datacall.</p>
+<p>For the slot “sampling”&quot; we have the slot definition “sampling_table”:</p>
+<table>
+<thead>
+<tr class="header">
+<th>column_name</th>
+<th>nullable</th>
+<th>mandatory</th>
+<th>pk</th>
+<th>type_name</th>
+<th>category</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sampling_type</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>sampling_type</td>
+<td>codelist</td>
+</tr>
+<tr class="even">
+<td>flag_country</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>country_type</td>
+<td>codelist</td>
+</tr>
+<tr class="odd">
+<td>year</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>year_type</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td>trip_code</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>trip_code_type</td>
+<td>text</td>
+</tr>
+<tr class="odd">
+<td>vessel_id</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>vessel_type</td>
+<td>codelist</td>
+</tr>
+<tr class="even">
+<td>nb_set</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>nb_set_type</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td>day_at_sea</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>day_sea_type</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td>sampling_method</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>sampling_method_type</td>
+<td>codelist</td>
+</tr>
+<tr class="odd">
+<td>aggregation_level</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>aggregation_level_type</td>
+<td>codelist</td>
+</tr>
+<tr class="even">
+<td>station_number</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>station_number_type</td>
+<td>text</td>
+</tr>
+<tr class="odd">
+<td>catch_registration</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>catch_registration_type</td>
+<td>codelist</td>
+</tr>
+<tr class="even">
+<td>date</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>date_type</td>
+<td>date</td>
+</tr>
+<tr class="odd">
+<td>area</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>area_type</td>
+<td>text</td>
+</tr>
+<tr class="even">
+<td>fishing_level6</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>fishing_l6_type</td>
+<td>codelist</td>
+</tr>
+<tr class="odd">
+<td>fishing_level7</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>fishing_l7_type</td>
+<td>codelist</td>
+</tr>
+<tr class="even">
+<td>species</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>species_type</td>
+<td>codelist</td>
+</tr>
+<tr class="odd">
+<td>catch_category</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>catch_category_type</td>
+<td>codelist</td>
+</tr>
+<tr class="even">
+<td>weight</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>weight_type</td>
+<td>numeric</td>
+</tr>
+<tr class="odd">
+<td>weight_allspecies</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>weight_allspecies_type</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td>length_code</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>length_code_type</td>
+<td>codelist</td>
+</tr>
+<tr class="odd">
+<td>length_class</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>length_class_type</td>
+<td>numeric</td>
+</tr>
+<tr class="even">
+<td>number_at_length</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>number_at_length_type</td>
+<td>numeric</td>
+</tr>
+</tbody>
+</table>
+<p>Her we have 6 column:</p>
+<ul>
+<li>“column_name”, names of the column in our data.</li>
+<li>“nullable”, data in the column could be null (TRUE) or not (FALSE).</li>
+<li>“mandatory”, column are mandatory (TRUE) or not (FALSE).</li>
+<li>“pk”, the column is a primary key (TRUE) or not (FALSE). In relational databases, a primary key is one or a concatenation of variables that uniquely specify an element (a row) in a slot. A primary key couldn’t be repeated and have to be unique. This is a very important parameter in the database model.</li>
+<li>“type_name”, this is the name of the type of data present in the associated column.</li>
+<li>“category”, category of data present in the associated column.</li>
+</ul>
+<p>All of this information will be used for different checks and verification (see section below).</p>
+</div>
+<div id="categories-definitions" class="section level4">
+<h4>Categories definitions</h4>
+<p>In the previous sheet, we have define several categories types. These categories apply specifications on data associated.</p>
+<p>For now, there are 5 categories possible: codelist, numeric, logical, text and date.</p>
+<div id="codelist-category" class="section level5">
+<h5>Codelist category</h5>
+<p>In our example, we have several codelist category. A codelist is a list of codes or meanings that represent the only allowed values for a particular data item. All the codelist type are reference in the sheet “codelist_types” and link column “type_name” of the different sheet slot definition with a column “enumeration_table” and a sheet “enumeration_table”. This last sheet contains all the codes/meanings of the codelist associated and a description of it.</p>
+<p>On the “sampling_table” use before as example (the first table are the “codelist_types” and the second table are a focus on “codelist_specie”):</p>
+<table>
+<thead>
+<tr class="header">
+<th>type_name</th>
+<th>enumeration_table</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sampling_type</td>
+<td>codelist_sampling_type</td>
+</tr>
+<tr class="even">
+<td>country_type</td>
+<td>codelist_country</td>
+</tr>
+<tr class="odd">
+<td>vessel_type</td>
+<td>codelist_vessel</td>
+</tr>
+<tr class="even">
+<td>sampling_method_type</td>
+<td>codelist_sampling_method</td>
+</tr>
+<tr class="odd">
+<td>aggregation_level_type</td>
+<td>codelist_agregation_level</td>
+</tr>
+<tr class="even">
+<td>catch_registration_type</td>
+<td>codelist_catch_registration</td>
+</tr>
+<tr class="odd">
+<td>fishing_l6_type</td>
+<td>codelist_fishing_level6</td>
+</tr>
+<tr class="even">
+<td>fishing_l7_type</td>
+<td>codelist_fishing_level7</td>
+</tr>
+<tr class="odd">
+<td>species_type</td>
+<td>codelist_specie</td>
+</tr>
+<tr class="even">
+<td>catch_category_type</td>
+<td>codelist_catch_category</td>
+</tr>
+<tr class="odd">
+<td>length_code_type</td>
+<td>codelist_lenght_code</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>code</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SWO</td>
+<td>Xiphias gladius</td>
+</tr>
+<tr class="even">
+<td>YFT</td>
+<td>Thunnus albacares</td>
+</tr>
+<tr class="odd">
+<td>SKJ</td>
+<td>Katsuwonus pelamis</td>
+</tr>
+<tr class="even">
+<td>BET</td>
+<td>Thunnus obesus</td>
+</tr>
+</tbody>
+</table>
+<p>Warning ! For increase the generalization of this package and is appropriation by everyone, a choice was made to let the user complete and update the template of the definition data format. In return, it’s very important to keep all the structure of the sheet (column name for example). If you add another codelist sheet (in our example we should have 11 codelist sheets, one for each “type_name”) be carefull to use the same template as the sheet “codelist_example” in the empty definition data format.</p>
+</div>
+<div id="numeric-category" class="section level5">
+<h5>Numeric category</h5>
+<p>In our example we have 7 numeric categories:</p>
+<table>
+<thead>
+<tr class="header">
+<th>type_name</th>
+<th>is_integer</th>
+<th>min</th>
+<th>max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>year_type</td>
+<td>TRUE</td>
+<td>1950</td>
+<td>2018</td>
+</tr>
+<tr class="even">
+<td>nb_set_type</td>
+<td>TRUE</td>
+<td>1</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td>day_sea_type</td>
+<td>FALSE</td>
+<td>1</td>
+<td>90</td>
+</tr>
+<tr class="even">
+<td>weight_type</td>
+<td>FALSE</td>
+<td>10</td>
+<td>5000</td>
+</tr>
+<tr class="odd">
+<td>weight_allspecies_type</td>
+<td>FALSE</td>
+<td>10</td>
+<td>5000</td>
+</tr>
+<tr class="even">
+<td>length_class_type</td>
+<td>TRUE</td>
+<td>10</td>
+<td>300</td>
+</tr>
+<tr class="odd">
+<td>number_at_length_type</td>
+<td>FALSE</td>
+<td>0,1</td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
+<p>Like for the codelist category before, all information about this category are reference in the sheet “numeric_types” (with a link between with the sheet slot definition throught “type_name”). Furthermore, we have 3 new column:</p>
+<ul>
+<li>“is_integer”, does data stock in the column are integer (decimals not allowed, TRUE) or not (FALSE)?</li>
+<li>“min”, minmum value (included) of our data. You have to fill NA in the cell if not applicable.</li>
+<li>“max”, maximum value (included) of our data. You have to fill NA in the cell if not applicabe.</li>
+</ul>
+</div>
+<div id="logical-category" class="section level5">
+<h5>Logical category</h5>
+<p>A logical argument in R only contains TRUE or FALSE values. In R:</p>
+<ul>
+<li>TRUE values could be T, TRUE, True or true.</li>
+<li>FALSE values could be F, FALSE, False or false.</li>
+</ul>
+<p>Like before, all information about the logical categories are reference in the sheet “logical_types”.</p>
+<p>In our example, we don’t have the kind of category but the template of the sheet “logical_types” could be like that:</p>
+<table>
+<thead>
+<tr class="header">
+<th>type_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>yes_no_type</td>
+</tr>
+</tbody>
+</table>
+<p>In the sheet we see that we have only the information of the “type_name” (link to the sheet slot definition associated). We could think that this sheet should be not relevant because we don’t perform any check, except the verification of logical format and we could done that directly from the information of the sheet slot definition associated. This choose was made in a perspective of the evolution of the package: a new function/checks could be easier incremented and not need, a priori, a modification of the definition data format.</p>
+</div>
+<div id="text-category" class="section level5">
+<h5>Text category</h5>
+<p>All the information about the text categories are reference in the sheet “text_types”.</p>
+<p>For our example, we have these data referenced as text:</p>
+<table>
+<thead>
+<tr class="header">
+<th>type_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>area_type</td>
+</tr>
+<tr class="even">
+<td>trip_code_type</td>
+</tr>
+<tr class="odd">
+<td>station_number_type</td>
+</tr>
+</tbody>
+</table>
+<p>Like for the logical category and for the same reason, we have only the information of the “type_name”.</p>
+</div>
+<div id="date-category" class="section level5">
+<h5>Date category</h5>
+<p>The last catergory is the date category. In our example, we have one data category:</p>
+<table>
+<thead>
+<tr class="header">
+<th>type_name</th>
+<th>time_zone_utc</th>
+<th>format_1</th>
+<th>format_2</th>
+<th>format_3</th>
+<th>format_4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>date_type</td>
+<td>TRUE</td>
+<td>ymd</td>
+<td>ym</td>
+<td>yQq</td>
+<td>ymd_HMS</td>
+</tr>
+</tbody>
+</table>
+<p>We can find:</p>
+<ul>
+<li>“data_type”, link with the sheet slot definition.</li>
+<li>“time_zone_utc”, data are stock in UTC (Coordinated Universal Time, TRUE) or not (FALSE). For now all the data in date format have to be in UTC (by default in the verification function associated). But it could be possible, if necessary, to update the function and add a dynamic parameter for a specific time zone.</li>
+<li>“format_x”, specification of the date format. The date verification use the function <a href="https://www.rdocumentation.org/packages/lubridate/versions/1.7.4/topics/parse_date_time">“parse_date_time”</a> of the package lubridate. This function have several specific formats and inherited formats in relation with the function <a href="https://www.rdocumentation.org/packages/base/versions/3.5.3/topics/strptime">“strptime”</a> of base package. For more details and formats specifications you could see the help of two functions. Furthermore, the list below contains the most commont format used with large pelagic data:
+<ul>
+<li>y or Y, the first one is year without century (00-99 or 0-99) and the second is year with century (only years 0:9999 are accepted). In the function used here, year matches with century so you can use either indifferently.</li>
+<li>m, month as decimal number (01-12 or 1-12).</li>
+<li>b, abbreviated or full month name in the current locale. Be carreful because these parameters could be affected by R options of localisation. Here onlyEnglish month names are understands</li>
+<li>d, day of the month as decimal number (01-31 or 0-31).</li>
+<li>H, hours as decimal number (00-24 or 0-24).</li>
+<li>M, minute as decimal number (00–59 or 0–59).</li>
+<li>S, second as decimal number (00–61 or 0–61), allowing for up to two leap-seconds (but POSIX-compliant in R implementations will ignore leap seconds).</li>
+<li>q, quarter of the month (1-4). A specification was made for format composed format with quarter. For now the most common was implemented and should follow template like “yQq” or “yqq” (with allways the last q the quarter of the month, for example 2018Q1 or 2018q1).</li>
+</ul></li>
+</ul>
+<p>Like for sheet “slots_hierarchy”, you can added any number of date format (incrementing by one the formats). Be sure to leave column empty if you don’t whant to use it (or delete it).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

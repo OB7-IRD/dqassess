@@ -1,0 +1,44 @@
+---
+title: "Package dqassess global methodology"
+output: 
+  rmarkdown::html_vignette
+  #pdf_document
+  #word_document
+author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Package dqassess global methodology}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+- [Background and context](#background-and-context)
+- [Purpose of this package](#purpose-of-this-package)
+- [Library installation](#library-installation)
+	
+# Package dqassess: procedures to assess the quality of large pelagic data
+
+## Background and context
+
+This package was developed under the cover of the European project MARE/2016/22 « Strengthening regional cooperation in the area of fisheries data collection » Annex III « Biological data collection for fisheries on highly migratory species » (acronym: RECOLAPE). He answered the aims of the two first task of the Work Package 5: propose procedures for data quality assessment, at national and regional levels, in the area of large pelagic fisheries data collection.
+
+## Purpose of this package
+
+To do
+
+## Library installation
+
+To do
+
+To install the R package, you have reach it from the Git plateform with "devtools" package:
+
+```{r loading_library, eval = FALSE, include = TRUE}
+# If devtools is not installed, run the following line
+install.packages("devtools")
+# Load the package from the Git
+devtools::install_git("link")
+# Load the library
+library(dqassess)
+```
+
+The package and functions associated contains documentation and help (just like an other package/function in R environnement). Use help() or ? for provide access to the documentation. Don't hesitate to take a look to the documentation, especially to check default parameter of functions.
