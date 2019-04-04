@@ -1,5 +1,5 @@
 ---
-title: "Package dqassess checks/controls methodology"
+title: "Package dqassess methodology"
 output: 
   rmarkdown::html_vignette
   #pdf_document
@@ -7,23 +7,54 @@ output:
 author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{Package dqassess checks/controls methodology}
+  %\VignetteIndexEntry{Package dqassess methodology}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-# Package dqassess: checks and controls methodology
+# Package dqassess: methodology
 
 This section provides explanations about methodology and process of checking and controls under the package dqassess.
 
+## Global methodology
+
+![Global schema](https://github.com/OB7-IRD/dqassess/raw/master/vignettes/dqassess_global.png){width=700px}
+
+## Library installation
+
+For now, all the source of the package are stored on [GitHub](https://github.com/OB7-IRD/dqassess.git). This is web-based hosting service for version control system or tracking changes. First of all, you need to install and load the library in R:
+
+```{r loading_library, eval = FALSE, include = TRUE}
+# Devtools is a necessary package
+# If is not installed, run the following line
+install.packages("devtools")
+# Load the package from the Git
+devtools::install_git("https://github.com/OB7-IRD/dqassess.git")
+# Load the library
+library(dqassess)
+# You can access to the package documentation with the following line
+?dqassess
+# If you want the documentation of a specific package function use the same syntax, for example for the function build_template_format_db
+?build_template_format_db
+```
+
 ## Fictive dataset
 
-As example for controls, we use a fictive dataset build to be closer to the RECOLAPE data call. This dataset is stock in the [data](https://github.com/OB7-IRD/dqassess/tree/master/data) directory of the package source and composed of 3 files :
+As example for controls, we use a fictive dataset build to be closer to the RECOLAPE data call. This dataset is stored in the [data](https://github.com/OB7-IRD/dqassess/tree/master/data) directory of the package source and composed of 3 files :
 
-- one excel files, [test_fictive_data1.xlsx](dqassess/data/test_fictive_data1.xlsx) (containing two sheets named "effort" and "landing") and [test_fictive_data2.xlsx](dqassess/data/test_fictive_data2.xlsx) (containing one sheet named "sampling").
-- one csv file, test_fictive_data2.csv which is a copy of the excel file test_fictive_data2.xlsx.
+- two excel files, [test_fictive_data1.xlsx](https://github.com/OB7-IRD/dqassess/raw/master/data/test_fictive_data1.xlsx) (containing two sheets named "effort" and "landing") and [test_fictive_data2.xlsx](https://github.com/OB7-IRD/dqassess/raw/master/data/test_fictive_data2.xlsx) (containing one sheet named "sampling").
+- one csv file, [test_fictive_data2.csv](https://github.com/OB7-IRD/dqassess/raw/master/data/test_fictive_data2.csv) which is a copy of the excel file test_fictive_data2.xlsx.
 
 Several errors were introduced in the dataset for provide a panel of different output report and explanation for it. Errors are focusing in red color in the two excel files.
 
-## Global methodology
+The definition data format used was build in according to the data call of the RECOLAPE project (you can find it [here](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx)) For confidential reason we can have a full access of the data of the project, but all of the package was tested under them.
+
+## Checking data
+
+To launch the checking of data, you have to run the following line:
+
+```{r checking_data, eval = FALSE, include = TRUE}
+
+```
+
 

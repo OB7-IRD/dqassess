@@ -1,5 +1,5 @@
 ---
-title: "Package dqassess global methodology"
+title: "Package dqassess introduction"
 output: 
   rmarkdown::html_vignette
   #pdf_document
@@ -7,7 +7,7 @@ output:
 author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{Package dqassess global methodology}
+  %\VignetteIndexEntry{Package dqassess introduction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

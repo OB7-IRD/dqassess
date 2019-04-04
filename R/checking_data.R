@@ -1,6 +1,6 @@
 #' @title Validation process for data
 #' @description Validation process for data.
-#' @name validate_data
+#' @name checking_data
 #' @author Mathieu Depetris, \email{mathieu.depetris@@ird.fr}
 #' @param obj Path of the file or R's object that contain data.
 #' @param format_db Path of the file or R's object that contain the definition format.
@@ -13,7 +13,7 @@
 #' @references \url{TO DO}
 #' @return The function returns file(s) location or list(s) name(s) of the report element(s).
 #' @export
-validate_data <- function(obj,
+checking_data <- function(obj,
                           format_db,
                           ignore_case_in_codelist = TRUE,
                           report = "files",
