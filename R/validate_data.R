@@ -178,7 +178,7 @@ validate_data <- function(obj,
                                             slot_name = current_slot$slot_name)
     }
     slot_found <- !is.null(current_obj_slot)
-    # Slot verifivation ----
+    # Slot verification ----
     if (slot_found == TRUE) {
       cat(paste0("Slot ", current_slot$slot_name, " found\nChecking in progress, be patient or take a coffee\n"))
       # Removing empty rows and colums of the slot ----

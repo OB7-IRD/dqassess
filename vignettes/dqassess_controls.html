@@ -14,70 +14,10 @@
 
 <meta name="date" content="2019-04-04" />
 
-<title>Package dqassess global methodology</title>
+<title>Package dqassess checks/controls methodology</title>
 
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 
 
 
@@ -93,38 +33,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<h1 class="title toc-ignore">Package dqassess global methodology</h1>
+<h1 class="title toc-ignore">Package dqassess checks/controls methodology</h1>
 <h4 class="author">Mathieu Depetris (<a href="mailto:mathieu.depetris@ird.fr">mathieu.depetris@ird.fr</a>)</h4>
 <h4 class="date">2019-04-04</h4>
 
 
 
+<div id="package-dqassess-checks-and-controls-methodology" class="section level1">
+<h1>Package dqassess: checks and controls methodology</h1>
+<p>This section provides explanations about methodology and process of checking and controls under the package dqassess.</p>
+<div id="fictive-dataset" class="section level2">
+<h2>Fictive dataset</h2>
+<p>As example for controls, we use a fictive dataset build to be closer to the RECOLAPE data call. This dataset is stock in the data directory of the package source and composed of 3 files :</p>
 <ul>
-<li><a href="#background-and-context">Background and context</a></li>
-<li><a href="#purpose-of-this-package">Purpose of this package</a></li>
-<li><a href="#library-installation">Library installation</a></li>
+<li>one excel files, test_fictive_data1.xlsx (containing two sheets named “effort” and “landing”) and test_fictive_data2.xlsx (containing one sheet named “sampling”).</li>
+<li>one csv file, test_fictive_data2.csv which is a copy of the excel file test_fictive_data2.xlsx.</li>
 </ul>
-<div id="package-dqassess-procedures-to-assess-the-quality-of-large-pelagic-data" class="section level1">
-<h1>Package dqassess: procedures to assess the quality of large pelagic data</h1>
-<div id="background-and-context" class="section level2">
-<h2>Background and context</h2>
-<p>This package was developed under the cover of the European project MARE/2016/22 « Strengthening regional cooperation in the area of fisheries data collection » Annex III « Biological data collection for fisheries on highly migratory species » (acronym: RECOLAPE). He answered the aims of the two first task of the Work Package 5: propose procedures for data quality assessment, at national and regional levels, in the area of large pelagic fisheries data collection.</p>
+<p>Several errors were introduced in the dataset for provide a panel of different output report and explanation for it. Errors are focusing in red color in the two excel files.</p>
 </div>
-<div id="purpose-of-this-package" class="section level2">
-<h2>Purpose of this package</h2>
-<p>To do</p>
-</div>
-<div id="library-installation" class="section level2">
-<h2>Library installation</h2>
-<p>To do</p>
-<p>To install the R package, you have reach it from the Git plateform with “devtools” package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If devtools is not installed, run the following line</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="co"># Load the package from the Git</span>
-devtools<span class="op">::</span><span class="kw">install_git</span>(<span class="st">&quot;link&quot;</span>)
-<span class="co"># Load the library</span>
-<span class="kw">library</span>(dqassess)</code></pre></div>
-<p>The package and functions associated contains documentation and help (just like an other package/function in R environnement). Use help() or ? for provide access to the documentation. Don’t hesitate to take a look to the documentation, especially to check default parameter of functions.</p>
+<div id="global-methodology" class="section level2">
+<h2>Global methodology</h2>
 </div>
 </div>
 

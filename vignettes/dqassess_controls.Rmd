@@ -1,0 +1,29 @@
+---
+title: "Package dqassess checks/controls methodology"
+output: 
+  rmarkdown::html_vignette
+  #pdf_document
+  #word_document
+author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Package dqassess checks/controls methodology}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Package dqassess: checks and controls methodology
+
+This section provides explanations about methodology and process of checking and controls under the package dqassess.
+
+## Fictive dataset
+
+As example for controls, we use a fictive dataset build to be closer to the RECOLAPE data call. This dataset is stock in the [data](https://github.com/OB7-IRD/dqassess/tree/master/data) directory of the package source and composed of 3 files :
+
+- one excel files, [test_fictive_data1.xlsx](dqassess/data/test_fictive_data1.xlsx) (containing two sheets named "effort" and "landing") and [test_fictive_data2.xlsx](dqassess/data/test_fictive_data2.xlsx) (containing one sheet named "sampling").
+- one csv file, test_fictive_data2.csv which is a copy of the excel file test_fictive_data2.xlsx.
+
+Several errors were introduced in the dataset for provide a panel of different output report and explanation for it. Errors are focusing in red color in the two excel files.
+
+## Global methodology
+
