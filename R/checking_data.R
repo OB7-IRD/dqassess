@@ -42,7 +42,7 @@ checking_data <- function(obj,
     format_type <- "file"
     format_file_md5 <- tools::md5sum(format_file_path)
     format_db <- read_format_db(input_file_path = format_file_path)
-    cat("Correct import of the format file definition\n")
+    cat("Correct import of the definition data format\n")
   } else {
     format_type <- "object"
   }
@@ -419,7 +419,7 @@ checking_data <- function(obj,
         # Save the current_obj_slot_report
         current_obj_slot_report_file_path <- file.path(report_dir,
                                                        paste0(report_file_nameprefix,
-                                                              "slot_",
+                                                              "_slot_",
                                                               current_slot$slot_name,
                                                               ".csv"))
         write.table(x = current_obj_slot_report,
@@ -589,21 +589,21 @@ checking_data <- function(obj,
     #In a file
     report_meta_file_path <- file.path(report_dir,
                                        paste0(report_file_nameprefix,
-                                              "meta.csv"))
+                                              "_meta.csv"))
     write.table(x = report_meta,
                 file = report_meta_file_path,
                 row.names = FALSE,
                 sep = ";")
     report_struct_file_path <- file.path(report_dir,
                                        paste0(report_file_nameprefix,
-                                              "struct.csv"))
+                                              "_str.csv"))
     write.table(x = report_struct,
                 file = report_struct_file_path,
                 row.names = FALSE,
                 sep = ";")
     report_data_file_path <- file.path(report_dir,
                                        paste0(report_file_nameprefix,
-                                              "data.csv"))
+                                              "_data.csv"))
     write.table(x = report_data,
                 file = report_data_file_path,
                 row.names = FALSE,
