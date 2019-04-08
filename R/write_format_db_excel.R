@@ -6,7 +6,7 @@
 #' @param output_file_path_dir Location of export directory for the format definition. By default, the function uses the temporary directory.
 #' @param output_file_name Name of the file exported. By default, the function use this syntax: formatdef_\%Y\%m\%d_\%H\%M\%S (check formats of \code{\link[base]{strptime}} function in R).
 #' @param output_file_ext Extension of the file exported. You have to choose between xlsx for Excel 2007 OOXML format, or xls for Excel 95 binary format. Be default file are exported in xlsx.
-#' @references \url{TO DO}
+#' @references \url{https://github.com/OB7-IRD/dqassess/blob/master/R/write_format_db_excel.R}
 #' @return The function return the path of the exported file.
 #' @export
 write_format_db_excel <- function(format_db,

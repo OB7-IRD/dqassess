@@ -5,11 +5,12 @@
 #' @name dqassess
 #' @author Mathieu Depetris, \email{mathieu.depetris@@ird.fr}
 #' @author Norbert Billet, \email{norbert.billet@@ifremer.fr}
-#' @references \url{TO DO}
 #' @section List of available functions:
 #'\itemize{
-#' \item{\code{\link{build_format_db}}}
+#' \item{\code{\link{build_template_format_db}}}
 #' \item{\code{\link{read_format_db}}}
+#' \item{\code{\link{write_format_db_excel}}}
+#' \item{\code{\link{checking_data}}}
 #' }
 #' @docType package
 "_PACKAGE"

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mathieu Depetris (mathieu.depetris@ird.fr)" />
 
-<meta name="date" content="2019-04-05" />
+<meta name="date" content="2019-04-08" />
 
 <title>Package dqassess methodology</title>
 
@@ -95,10 +95,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Package dqassess methodology</h1>
 <h4 class="author">Mathieu Depetris (<a href="mailto:mathieu.depetris@ird.fr">mathieu.depetris@ird.fr</a>)</h4>
-<h4 class="date">2019-04-05</h4>
+<h4 class="date">2019-04-08</h4>
 
 
 
+<ul>
+<li><a href="#global-methodology">Global methodology</a></li>
+<li><a href="#library-installation">Library installation</a></li>
+<li><a href="#fictive-dataset">Fictive dataset</a></li>
+<li><a href="#checking-data">Checking data</a>
+<ul>
+<li><a href="#first-example-data-on-excel-file">First example: data on excel file</a></li>
+<li><a href="#second-example-data-on-csv-file">Second example: data on csv file</a></li>
+</ul></li>
+</ul>
 <div id="package-dqassess-methodology" class="section level1">
 <h1>Package dqassess: methodology</h1>
 <p>This section provides explanations about methodology and process of checking and controls under the package dqassess.</p>
@@ -157,8 +167,8 @@ devtools<span class="op">::</span><span class="kw">install_git</span>(<span clas
 <li>“file_name_slot”, if the argument obj is a csv file (and by analogy contain only one slot), you have to specify here the name of the slot for match with the definition data format. By default not provided.</li>
 </ul>
 <p>In the following sections, we will run different scenario and check in detail the output report.</p>
-<div id="first-example" class="section level3">
-<h3>First example</h3>
+<div id="first-example-data-on-excel-file" class="section level3">
+<h3>First example: data on excel file</h3>
 <p>For the first example, we used a dataset composed of 2 slots (effort and landing) from an xlsx file (test_fictive_data1.xlsx). Associated to this data we used the definition data format built during the RECOLAPE project (recolape_definition_data_format.xlsx).</p>
 <p>Now, run the following lines (you need to adapt parameters, especially paths, to your configuration):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_checking1 &lt;-<span class="st"> </span><span class="kw">checking_data</span>(<span class="dt">obj =</span> <span class="st">&quot;path_test_fictive_data1.xlsx&quot;</span>,
@@ -186,7 +196,8 @@ devtools<span class="op">::</span><span class="kw">install_git</span>(<span clas
 <p>Now let check our outputs. There are in the reporting directory (specify in the parameter “report_dir” of the function below) and her names are built througth a concatenation between data name, time when the function begin to run and information on global content of the file. In anycase we 4 kinds of csv files:</p>
 <ul>
 <li>a meta.csv file (metadata) which bring global information on definition data format used (name and version) and other information like output format and location.</li>
-<li>a str.csv file with information on the structure of data imported and more precisely if data are according to the structure define in the definition data format (all slots defined are provided ? same question for the columns associated). This file contains summarize of tests applied on data.</li>
+<li>a str.csv file with information on the structure of data imported and more precisely if data are according to the structure define in the definition data format (all slots defined are provided ? same question for the columns associated).</li>
+<li>a data.csv file with a summarize, by slot, of tests applied on data.</li>
 <li>one or more (in relation with the number of slot founded in the data/definition data format) slot.csv file with results of each tests/verifications (VALID or INVALID) made on every data.</li>
 </ul>
 <p>Structure and data reports have the same file strucutre:</p>
@@ -197,14 +208,35 @@ devtools<span class="op">::</span><span class="kw">install_git</span>(<span clas
 <p>In this example, all mistakes included in our data are highlighting. Take a look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.</p>
 </div>
 </div>
-<div id="second-example" class="section level3">
-<h3>Second example</h3>
+<div id="second-example-data-on-csv-file" class="section level3">
+<h3>Second example: data on csv file</h3>
 <p>For this second example, we used the same definition data format like before (recolape_definition_data_format.xlsx) but associated to data in a csv file (by analogy composed of one slot, “sampling”).</p>
 <p>For this example, run theses lines in R console:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result_checking2 &lt;-<span class="st"> </span><span class="kw">checking_data</span>(<span class="dt">obj =</span> <span class="st">&quot;path_test_fictive_data2.csv&quot;</span>,
                                   <span class="dt">format_db =</span> <span class="st">&quot;path_recolape_definition_data_format.xlsx&quot;</span>,
                                   <span class="dt">report_dir =</span> <span class="st">&quot;path_output_directory&quot;</span>,,
                                   <span class="dt">file_name_slot =</span> <span class="st">&quot;sampling&quot;</span>)</code></pre></div>
+<div id="checking-of-the-r-console-1" class="section level4">
+<h4>Checking of the R console</h4>
+<p>Like before, the R console provide usefull information of what append:</p>
+<pre><code>## (INFO) Empty enumeration table (code list) &quot;codelist_vessel&quot; in the format definition file.
+## (INFO) Empty enumeration table (code list) &quot;codelist_vessel&quot; in the format definition file.
+## (INFO) Empty enumeration table (code list) &quot;codelist_vessel&quot; in the format definition file.
+## Correct import of the format file definition
+## Correct import of data
+## Slot effort not found
+## Process for the next slot available
+## Slot landing not found
+## Process for the next slot available
+## Slot sampling found
+## Checking in progress, be patient or take a coffee</code></pre>
+<p>As we expected, only the table “sampling” was found. For a description of the other outputs you can take a look to the previous section (<a href="#checking-of-the-r-console">Checking of the R console example 1</a>).</p>
+</div>
+<div id="checking-outputs-1" class="section level4">
+<h4>Checking outputs</h4>
+<p>For this case, we can see 4 outputs: meta.csv file, str.csv,file, data.csv file and one file called slot_sampling.csv.</p>
+<p>Like for the previous example, mistakes included in the “sampling” data are identified. For example, there are troubles with the codelist of the column “flag_country” (“TOF” code are not a valid code according to the definition data format associated). Like before, take a look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.</p>
+</div>
 </div>
 </div>
 </div>

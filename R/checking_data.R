@@ -10,7 +10,7 @@
 #' @param text_file_sep If the argument obj is a csv file, specify here the field separator of it. By default the separator is ";".
 #' @param text_file_dec If the argument obj is a csv file, specify here the string use for decimal points. By default the decimal is ".".
 #' @param file_name_slot If the argument obj is a csv file, specify here the name of the slot. By default not provided.
-#' @references \url{TO DO}
+#' @references \url{https://github.com/OB7-IRD/dqassess/blob/master/R/checking_data.R}
 #' @return The function returns file(s) location or list(s) name(s) of the report element(s).
 #' @export
 checking_data <- function(obj,

@@ -12,72 +12,12 @@
 
 <meta name="author" content="Mathieu Depetris (mathieu.depetris@ird.fr)" />
 
-<meta name="date" content="2019-04-04" />
+<meta name="date" content="2019-04-08" />
 
 <title>Package dqassess introduction</title>
 
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 
 
 
@@ -95,14 +35,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Package dqassess introduction</h1>
 <h4 class="author">Mathieu Depetris (<a href="mailto:mathieu.depetris@ird.fr">mathieu.depetris@ird.fr</a>)</h4>
-<h4 class="date">2019-04-04</h4>
+<h4 class="date">2019-04-08</h4>
 
 
 
 <ul>
 <li><a href="#background-and-context">Background and context</a></li>
 <li><a href="#purpose-of-this-package">Purpose of this package</a></li>
-<li><a href="#library-installation">Library installation</a></li>
+<li><a href="#package-framework">Package framework</a></li>
 </ul>
 <div id="package-dqassess-procedures-to-assess-the-quality-of-large-pelagic-data" class="section level1">
 <h1>Package dqassess: procedures to assess the quality of large pelagic data</h1>
@@ -110,21 +50,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Background and context</h2>
 <p>This package was developed under the cover of the European project MARE/2016/22 « Strengthening regional cooperation in the area of fisheries data collection » Annex III « Biological data collection for fisheries on highly migratory species » (acronym: RECOLAPE). He answered the aims of the two first task of the Work Package 5: propose procedures for data quality assessment, at national and regional levels, in the area of large pelagic fisheries data collection.</p>
 </div>
-<div id="purpose-of-this-package" class="section level2">
-<h2>Purpose of this package</h2>
-<p>To do</p>
+<div id="aim-of-this-package" class="section level2">
+<h2>Aim of this package</h2>
+<p>The main objective of this package concerns the development of data quality assessment procedures. Within the framework of the regional cooperation, it’s crucial to ensure that the data transmitted to the end users have undergone common quality assessment procedures.</p>
+<p>As a minimum, we should check the data quality at two important steps of the data flow:</p>
+<ul>
+<li>At the national scale, before the transmission to the regional coordination group,</li>
+<li>At the regional scale, after building the regional dataset and before the transmission to end users.</li>
+</ul>
 </div>
-<div id="library-installation" class="section level2">
-<h2>Library installation</h2>
-<p>To do</p>
-<p>To install the R package, you have reach it from the Git plateform with “devtools” package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If devtools is not installed, run the following line</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="co"># Load the package from the Git</span>
-devtools<span class="op">::</span><span class="kw">install_git</span>(<span class="st">&quot;https://github.com/OB7-IRD/dqassess.git&quot;</span>)
-<span class="co"># Load the library</span>
-<span class="kw">library</span>(dqassess)</code></pre></div>
-<p>The package and functions associated contains documentation and help (just like an other package/function in R environnement). Use help() or ? for provide access to the documentation. Don’t hesitate to take a look to the documentation, especially to check default parameter of functions.</p>
+<div id="package-framework" class="section level2">
+<h2>Package framework</h2>
+<p>This package was design with a simple thought: quality and associated processes have to be in constant improvement!</p>
+<p>Indeed, the structure package was developped to maximize compatibility with futur updated and addition of specific controls and tests. Furthermore, it must be seen as a bridge to systems more transversal and interconnected, like the new RDBES (Regional Data Base and Estimation System), under developpement by the International Council for the Exploration of the Sea (ICES). Otherwise, several other projects, like the WP6 of the FishPi2 project or the futur evolutions of the COST R package, have common guideline and goals. These projects were not avaible yet, but it could be very interesting to working with and develop common processes.</p>
+<p>For now, the package source was stored on a public repository loacated on <a href="https://github.com/OB7-IRD/dqassess.git">GitHub</a>. This is web-based hosting service for version control system or tracking changes. In addition of storage and tracking changes, this platform allowed a system to track todos, bugs or feature requests. This working by using “Issues” menu throught the following <a href="https://github.com/OB7-IRD/dqassess/issues/new">link</a>. All contributions and feeback experiences on should increase the relevance and the robustness of this package and also serve the interest the large pelagic community people.</p>
 </div>
 </div>
 

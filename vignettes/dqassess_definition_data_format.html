@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mathieu Depetris (mathieu.depetris@ird.fr)" />
 
-<meta name="date" content="2019-04-04" />
+<meta name="date" content="2019-04-08" />
 
 <title>Package dqassess definition data format</title>
 
@@ -95,7 +95,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Package dqassess definition data format</h1>
 <h4 class="author">Mathieu Depetris (<a href="mailto:mathieu.depetris@ird.fr">mathieu.depetris@ird.fr</a>)</h4>
-<h4 class="date">2019-04-04</h4>
+<h4 class="date">2019-04-08</h4>
 
 
 
@@ -115,8 +115,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#date-category">Date category</a></li>
 </ul></li>
 </ul>
-<div id="definition-data-format-description-and-utilisation" class="section level1">
-<h1>Definition data format : description and utilisation</h1>
+<div id="package-dqassess-definition-data-format-description-and-utilisation" class="section level1">
+<h1>Package dqassess: definition data format, description and utilisation</h1>
 <div id="using-a-definition-data-format" class="section level2">
 <h2>Using a definition data format</h2>
 <p>All controls, and more generally verifications process, gravite around a definition data format. This element contains metadata and all the informations necessary to define your data. For example, this definition format was able to answers to the kind of questions:</p>
@@ -132,7 +132,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This function create a R list. If you want to export it (in xlsx or xls format), you could use the function below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Don't forget to check function documentation with ?write_format_db_excel or help(write_format_db_excel)</span>
 <span class="kw">write_format_db_excel</span>(<span class="dt">format_db =</span> format_db_empty)</code></pre></div>
-<p>You can see an example of the empty template xlsx format definition <a href="link">here</a> and the example of the xlsx format definition for the RECOLAPE datacall <a href="link">here</a>.</p>
+<p>You can see an example of the empty template of the defintion data format <a href="https://github.com/OB7-IRD/dqassess/raw/master/data/template_definition_data_format.xlsx">here</a> and the example of the defintion data format for the RECOLAPE datacall <a href="https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx">here</a>.</p>
+<p>The last basic command to know is if you want to read an existing definition data format:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">format_db &lt;-<span class="st"> </span><span class="kw">read_format_db</span>(<span class="dt">input_file_path =</span> <span class="st">&quot;path_definition_data_format&quot;</span>)</code></pre></div>
 <div id="definition-data-format-architecture" class="section level3">
 <h3>Definition data format architecture</h3>
 <p>In this section, we will explain the different sheets of the definition data format, thourght the empty template and the format definition for the RECOLAPE datacall.</p>

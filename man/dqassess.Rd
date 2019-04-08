@@ -13,13 +13,20 @@ This R package was developped within the work package 5 of the FRAMEWORK CONTRAC
 \section{List of available functions}{
 
 \itemize{
-\item{\code{\link{build_format_db}}}
+\item{\code{\link{build_template_format_db}}}
 \item{\code{\link{read_format_db}}}
+\item{\code{\link{write_format_db_excel}}}
+\item{\code{\link{checking_data}}}
 }
 }
 
-\references{
-\url{TO DO}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/OB7-IRD/dqassess}
+  \item Report bugs at \url{https://github.com/OB7-IRD/dqassess/issues}
+}
+
 }
 \author{
 Mathieu Depetris, \email{mathieu.depetris@ird.fr}

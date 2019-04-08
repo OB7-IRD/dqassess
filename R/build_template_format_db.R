@@ -1,10 +1,10 @@
 #' @title Build template definition format
 #' @description Build template definition format.
-#' @name build_format_db
+#' @name build_template_format_db
 #' @author Mathieu Depetris, \email{mathieu.depetris@@ird.fr}
 #' @param format_name Name of the format.
 #' @param format_version Version of the format (by default 0.1.0). To know more about the definition format take a look the corresponding specification section.
-#' @references \url{TO DO}
+#' @references \url{https://github.com/OB7-IRD/dqassess/blob/master/R/build_template_format_db.R}
 #' @return A list of 9 elements
 #' @section Specifications:
 #' \describe{

@@ -32,7 +32,7 @@ The function returns file(s) location or list(s) name(s) of the report element(s
 Validation process for data.
 }
 \references{
-\url{TO DO}
+\url{https://github.com/OB7-IRD/dqassess/blob/master/R/checking_data.R}
 }
 \author{
 Mathieu Depetris, \email{mathieu.depetris@ird.fr}

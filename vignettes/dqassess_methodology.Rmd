@@ -12,6 +12,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+- [Global methodology](#global-methodology)
+- [Library installation](#library-installation)
+- [Fictive dataset](#fictive-dataset)
+- [Checking data](#checking-data)
+	- [First example: data on excel file](#first-example-data-on-excel-file)
+	- [Second example: data on csv file](#second-example-data-on-csv-file)
+
 # Package dqassess: methodology
 
 This section provides explanations about methodology and process of checking and controls under the package dqassess.
@@ -77,7 +84,7 @@ Like explain in the function documentation (run ?checking_data in R console), yo
 
 In the following sections, we will run different scenario and check in detail the output report.
 
-### First example
+### First example: data on excel file
 
 For the first example, we used a dataset composed of 2 slots (effort and landing) from an xlsx file (test_fictive_data1.xlsx). Associated to this data we used the definition data format built during the RECOLAPE project (recolape_definition_data_format.xlsx).
 
@@ -118,7 +125,8 @@ The next following lines explain to users what the function doing. Here we can s
 Now let check our outputs. There are in the reporting directory (specify in the parameter "report_dir" of the function below) and her names are built througth a concatenation between data name, time when the function begin to run and information on global content of the file. In anycase we 4 kinds of csv files:
 
 - a meta.csv file (metadata) which bring global information on definition data format used (name and version) and other information like output format and location.
-- a str.csv file with information on the structure of data imported and more precisely if data are according to the structure define in the definition data format (all slots defined are provided ? same question for the columns associated). This file contains summarize of tests applied on data.
+- a str.csv file with information on the structure of data imported and more precisely if data are according to the structure define in the definition data format (all slots defined are provided ? same question for the columns associated). 
+- a data.csv file with a summarize, by slot, of tests applied on data.
 - one or more (in relation with the number of slot founded in the data/definition data format) slot.csv file with results of each tests/verifications (VALID or INVALID) made on every data.
 
 Structure and data reports have the same file strucutre: 
@@ -128,7 +136,7 @@ Structure and data reports have the same file strucutre:
 
 In this example, all mistakes included in our data are highlighting. Take a look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.
 
-### Second example
+### Second example: data on csv file
 
 For this second example, we used the same definition data format like before (recolape_definition_data_format.xlsx) but associated to data in a csv file (by analogy composed of one slot, "sampling").
 
@@ -143,8 +151,27 @@ result_checking2 <- checking_data(obj = "path_test_fictive_data2.csv",
 
 #### Checking of the R console
 
-Like before, the R console provide usefull information of what append 
+Like before, the R console provide usefull information of what append:
 
+```{r checking_data_example2_results, echo=FALSE}
+cat(paste("(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the format definition file."), 
+    "(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the format definition file.",
+    "(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the format definition file.",
+    "Correct import of the format file definition",
+    "Correct import of data",
+    "Slot effort not found",
+    "Process for the next slot available",
+    "Slot landing not found",
+    "Process for the next slot available",
+    "Slot sampling found",
+    "Checking in progress, be patient or take a coffee",
+    sep = "\n")
+```
+
+As we expected, only the table "sampling" was found. For a description of the other outputs you can take a look to the previous section ([Checking of the R console example 1](#checking-of-the-r-console)).
 
 #### Checking outputs
 
+For this case, we can see 4 outputs: meta.csv file, str.csv,file, data.csv file and one file called slot_sampling.csv.
+
+Like for the previous example, mistakes included in the "sampling" data are identified. For example, there are troubles with the codelist of the column "flag_country" ("TOF" code are not a valid code according to the definition data format associated). Like before, take a look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.

@@ -3,7 +3,7 @@
 #' @name read_format_db
 #' @author Mathieu Depetris, \email{mathieu.depetris@@ird.fr}
 #' @param input_file_path Path of the Excel file.
-#' @references \url{TO DO}
+#' @references \url{https://github.com/OB7-IRD/dqassess/blob/master/R/read_format_db.R}
 #' @return A list of elements from the format file definition.
 #' @examples
 #' read_format_db <- ("path_of_the_file\\file_name.xlsx")

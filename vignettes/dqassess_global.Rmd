@@ -14,31 +14,27 @@ vignette: >
 
 - [Background and context](#background-and-context)
 - [Purpose of this package](#purpose-of-this-package)
-- [Library installation](#library-installation)
-	
+- [Package framework](#package-framework)
+
 # Package dqassess: procedures to assess the quality of large pelagic data
 
 ## Background and context
 
 This package was developed under the cover of the European project MARE/2016/22 « Strengthening regional cooperation in the area of fisheries data collection » Annex III « Biological data collection for fisheries on highly migratory species » (acronym: RECOLAPE). He answered the aims of the two first task of the Work Package 5: propose procedures for data quality assessment, at national and regional levels, in the area of large pelagic fisheries data collection.
 
-## Purpose of this package
+## Aim of this package
 
-To do
+The main objective of this package concerns the development of data quality assessment procedures. Within the framework of the regional cooperation, it’s crucial to ensure that the data transmitted to the end users have undergone common quality assessment procedures. 
 
-## Library installation
+As a minimum, we should check the data quality at two important steps of the data flow:
 
-To do
+- At the national scale, before the transmission to the regional coordination group,
+- At the regional scale, after building the regional dataset and before the transmission to end users.
 
-To install the R package, you have reach it from the Git plateform with "devtools" package:
+## Package framework
 
-```{r loading_library, eval = FALSE, include = TRUE}
-# If devtools is not installed, run the following line
-install.packages("devtools")
-# Load the package from the Git
-devtools::install_git("https://github.com/OB7-IRD/dqassess.git")
-# Load the library
-library(dqassess)
-```
+This package was design with a simple thought: quality and associated processes have to be in constant improvement!
 
-The package and functions associated contains documentation and help (just like an other package/function in R environnement). Use help() or ? for provide access to the documentation. Don't hesitate to take a look to the documentation, especially to check default parameter of functions.
+Indeed, the structure package was developped to maximize compatibility with futur updated and addition of specific controls and tests. Furthermore, it must be seen as a bridge to systems more transversal and interconnected, like the new RDBES (Regional Data Base and Estimation System), under developpement by the International Council for the Exploration of the Sea (ICES). Otherwise, several other projects, like the WP6 of the FishPi2 project or the futur evolutions of the COST R package, have common guideline and goals. These projects were not avaible yet, but it could be very interesting to working with and develop common processes.
+
+For now, the package source was stored on a public repository loacated on [GitHub](https://github.com/OB7-IRD/dqassess.git). This is web-based hosting service for version control system or tracking changes. In addition of storage and tracking changes, this platform allowed a system to track todos, bugs or feature requests. This working by using "Issues" menu throught the following [link](https://github.com/OB7-IRD/dqassess/issues/new). All contributions and feeback experiences on should increase the relevance and the robustness of this package and also serve the interest the large pelagic community people.

@@ -25,7 +25,7 @@ vignette: >
 	- [Text category](#text-category)
 	- [Date category](#date-category)
 	
-# Definition data format : description and utilisation
+# Package dqassess: definition data format, description and utilisation
 
 ## Using a definition data format
 
@@ -51,7 +51,13 @@ This function create a R list. If you want to export it (in xlsx or xls format),
 write_format_db_excel(format_db = format_db_empty)
 ```
 
-You can see an example of the empty template xlsx format definition [here](link) and the example of the xlsx format definition for the RECOLAPE datacall [here](link).
+You can see an example of the empty template of the defintion data format [here](https://github.com/OB7-IRD/dqassess/raw/master/data/template_definition_data_format.xlsx) and the example of the defintion data format for the RECOLAPE datacall [here](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx).
+
+The last basic command to know is if you want to read an existing definition data format:
+
+```{r read_format_db, eval = FALSE, include = TRUE}
+format_db <- read_format_db(input_file_path = "path_definition_data_format")
+```
 
 ### Definition data format architecture
 

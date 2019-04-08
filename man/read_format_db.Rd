@@ -19,7 +19,7 @@ Read a format file definition from an Excel file
 read_format_db <- ("path_of_the_file\\\\file_name.xlsx")
 }
 \references{
-\url{TO DO}
+\url{https://github.com/OB7-IRD/dqassess/blob/master/R/read_format_db.R}
 }
 \author{
 Mathieu Depetris, \email{mathieu.depetris@ird.fr}

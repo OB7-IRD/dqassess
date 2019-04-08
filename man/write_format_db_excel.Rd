@@ -24,7 +24,7 @@ The function return the path of the exported file.
 Generation of a definition format in a excel file.
 }
 \references{
-\url{TO DO}
+\url{https://github.com/OB7-IRD/dqassess/blob/master/R/write_format_db_excel.R}
 }
 \author{
 Mathieu Depetris, \email{mathieu.depetris@ird.fr}
