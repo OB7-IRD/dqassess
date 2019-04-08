@@ -1,15 +1,15 @@
 ---
 title: "Package dqassess introduction"
-output: 
-  rmarkdown::html_vignette
-  #pdf_document
-  #word_document
 author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
 date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  word_document: default
+  html_vignette: default
 vignette: >
-  %\VignetteIndexEntry{Package dqassess introduction}
+  %\VignetteIndexEntry{Package dqassess definition data format}
+  \usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 - [Background and context](#background-and-context)

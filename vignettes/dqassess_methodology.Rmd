@@ -1,15 +1,15 @@
 ---
 title: "Package dqassess methodology"
-output: 
-  rmarkdown::html_vignette
-  #pdf_document
-  #word_document
 author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
 date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  word_document: default
+  html_vignette: default
 vignette: >
-  %\VignetteIndexEntry{Package dqassess methodology}
+  %\VignetteIndexEntry{Package dqassess definition data format}
+  \usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 - [Global methodology](#global-methodology)
@@ -36,7 +36,7 @@ For now, all the source of the package are stored on [GitHub](https://github.com
 # If is not installed, run the following line
 install.packages("devtools")
 # Load the package from the Git
-devtools::install_git("https://github.com/OB7-IRD/dqassess.git")
+devtools::install_github("https://github.com/OB7-IRD/dqassess.git",  build_opts = c("--no-resave-data", "--no-manual"))
 # Load the library
 library(dqassess)
 # You can access to the package documentation with the following line

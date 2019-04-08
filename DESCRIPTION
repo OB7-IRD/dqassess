@@ -21,6 +21,6 @@ Imports:
 Suggests: 
     knitr (>= 1.22),
     rmarkdown (>= 1.12)
-VignetteBuilder: knitr (>= 1.22)
+VignetteBuilder: knitr
 URL: https://github.com/OB7-IRD/dqassess
 BugReports: https://github.com/OB7-IRD/dqassess/issues

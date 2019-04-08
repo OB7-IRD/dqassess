@@ -1,15 +1,15 @@
 ---
 title: "Package dqassess definition data format"
-output: 
-  rmarkdown::html_vignette
-  #pdf_document
-  #word_document
 author: "Mathieu Depetris (mathieu.depetris@ird.fr)"
 date: "`r Sys.Date()`"
+output:
+  html_vignette: default
+  word_document: default
+  pdf_document: default
 vignette: >
   %\VignetteIndexEntry{Package dqassess definition data format}
+  \usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 - [Using a definition data format](#using-a-definition-data-format)

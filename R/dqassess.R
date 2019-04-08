@@ -6,11 +6,16 @@
 #' @author Mathieu Depetris, \email{mathieu.depetris@@ird.fr}
 #' @author Norbert Billet, \email{norbert.billet@@ifremer.fr}
 #' @section List of available functions:
-#'\itemize{
+#' \itemize{
 #' \item{\code{\link{build_template_format_db}}}
 #' \item{\code{\link{read_format_db}}}
 #' \item{\code{\link{write_format_db_excel}}}
 #' \item{\code{\link{checking_data}}}
+#' }
+#' @section Vignettes link:
+#' Several vignettes was made for explain the methodology behind the function and for give examples of application:
+#' \itemize{
+#' \item{\code{\link{../vignettes/dqassess_definition_data_format.html}}}
 #' }
 #' @docType package
 "_PACKAGE"

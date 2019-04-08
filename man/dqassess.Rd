@@ -20,6 +20,14 @@ This R package was developped within the work package 5 of the FRAMEWORK CONTRAC
 }
 }
 
+\section{Vignettes link}{
+
+Several vignettes was made for explain the methodology behind the function and for give examples of application:
+\itemize{
+\item{\code{\link{../vignettes/dqassess_definition_data_format.html}}}
+}
+}
+
 \seealso{
 Useful links:
 \itemize{
