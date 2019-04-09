@@ -24,9 +24,9 @@ This R package was developped within the work package 5 of the FRAMEWORK CONTRAC
 
 Several vignettes was made for explain the methodology behind the function and for give examples of application:
 \itemize{
-\item{\code{\link{[../doc/dqassess_global.html]{Global}}}}
-\item{\code{\link{[../doc/dqassess_definition_data_format.html]{Definition data format}}}}
-\item{\code{\link{[../doc/dqassess_methodology.html]{Methodology}}}}
+\item{\code{\link{../doc/dqassess_global.html}}}
+\item{\code{\link{../doc/dqassess_definition_data_format.html}}}
+\item{\code{\link{../doc/dqassess_methodology.html}}}
 }
 }
 
