@@ -1,3 +1,4 @@
+#' @export
 validate_null <- function(data,
                           slot_name,
                           column_name) {

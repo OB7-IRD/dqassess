@@ -1,3 +1,4 @@
+#' @export
 fp_key <- function(tab,
                    col_index, sep = ":-:") {
   key <- tab[, col_index]

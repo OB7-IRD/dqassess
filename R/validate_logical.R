@@ -1,3 +1,4 @@
+#' @export
 validate_logical <- function(data,
                              slot_name,
                              column_name) {

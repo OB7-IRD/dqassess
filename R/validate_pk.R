@@ -1,3 +1,4 @@
+#' @export
 validate_pk <- function(data,
                         slot_name,
                         pk_columns) {

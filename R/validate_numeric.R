@@ -1,3 +1,4 @@
+#' @export
 validate_numeric <- function(data,
                              slot_name,
                              column_name,

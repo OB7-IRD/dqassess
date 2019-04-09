@@ -1,3 +1,4 @@
+#' @export
 validate_codelist <- function(data,
                               slot_name,
                               column_name,

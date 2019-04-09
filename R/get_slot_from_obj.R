@@ -1,3 +1,4 @@
+#' @export
 get_slot_from_obj <- function(obj,
                               slot_name) {
   current_obj_slot <- NULL
