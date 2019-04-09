@@ -29,17 +29,17 @@ This section provides explanations about methodology and process of checking and
 
 ## Library installation
 
-For now, all the source of the package are stored on [GitHub](https://github.com/OB7-IRD/dqassess.git). This is web-based hosting service for version control system or tracking changes. First of all, you need to install and load the library in R:
+For now, all the source of the package is stored on [GitHub](https://github.com/OB7-IRD/dqassess.git). This is web-based hosting service for version control system or tracking changes. First, you need to install and load the library in R (you need an internet connection):
 
 ```{r loading_library, eval = FALSE, include = TRUE}
 # Devtools is a necessary package
-# If is not installed, run the following line
+# If it is not installed, run the following line
 install.packages("devtools")
 # Load the package from the Git
 devtools::install_github("https://github.com/OB7-IRD/dqassess.git",  build_opts = c("--no-resave-data", "--no-manual"))
 # Load the library
 library(dqassess)
-# You can access to the package documentation with the following line
+# You can access the package documentation with the following line
 ?dqassess
 # If you want the documentation of a specific package function use the same syntax, for example for the function build_template_format_db
 ?build_template_format_db
@@ -47,14 +47,14 @@ library(dqassess)
 
 ## Fictive dataset
 
-As example for controls, we use a fictive dataset build to be closer to the RECOLAPE data call. This dataset is stored in the [data](https://github.com/OB7-IRD/dqassess/tree/master/data) directory of the package source and composed of 3 files :
+As an example of controls, we use a fictive dataset build to be closer to the RECOLAPE data call. This dataset is stored in the [data](https://github.com/OB7-IRD/dqassess/tree/master/data) directory of the package source and composed of 3 files :
 
 - two excel files, [test_fictive_data1.xlsx](https://github.com/OB7-IRD/dqassess/raw/master/data/test_fictive_data1.xlsx) (containing two sheets named "effort" and "landing") and [test_fictive_data2.xlsx](https://github.com/OB7-IRD/dqassess/raw/master/data/test_fictive_data2.xlsx) (containing one sheet named "sampling").
 - one csv file, [test_fictive_data2.csv](https://github.com/OB7-IRD/dqassess/raw/master/data/test_fictive_data2.csv) which is a copy of the excel file test_fictive_data2.xlsx.
 
-Several errors were introduced in the dataset for provide a panel of different output report and explanation for it. Errors are focusing in red color in the two excel files.
+Several errors were introduced in the dataset to providing a panel of different output report and explanation for it. Errors are focusing in red color in the two excel files.
 
-The definition data format used was build in according to the data call of the RECOLAPE project (you can find it [here](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx)) For confidential reason we can have a full access of the data of the project, but all of the package was tested under them.
+The definition data format used was built in according to the data call of the RECOLAPE project (you can find it [here](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx)) For confidential reason we can have full access to the data of the project, but all of the package was tested under them.
 
 ## Checking data
 
@@ -71,22 +71,22 @@ result_checking <- checking_data(obj,
                                  file_name_slot)
 ```
 
-Like explain in the function documentation (run ?checking_data in R console), you have to filled 8 parameters:
+Like explain in the function documentation (run ?checking_data in R console), you have to fill 8 parameters:
 
 - "obj", this is the path of the file or R's object that contain data.
 - "format_db", this is the path of the file or R's object that contain the definition format.
-- "ignore_case_in_codelist", by default yes in the funcion (TRUE). You specify her if you ignored, or not, cases (upper or lower) in the codelist.
+- "ignore_case_in_codelist", by default yes in the function (TRUE). You specify her if you ignored, or not, cases (upper or lower) in the codelist.
 - "report", selected format for the report. You could choose between files, list or both. By default files selected.
 - "report_dir", location of export directory for the report. By default, the function uses the temporary directory.
 - "text_file_sep", if the argument obj is a csv file, specify here the field separator of it. By default the separator is ";".
 - "text_file_dec", if the argument obj is a csv file, specify here the string use for decimal points. By default the decimal is ".".
-- "file_name_slot", if the argument obj is a csv file (and by analogy contain only one slot), you have to specify here the name of the slot for match with the definition data format. By default not provided.
+- "file_name_slot", if the argument obj is a csv file (and by analogy contain only one slot), you have to specify here the name of the slot for a match with the definition data format. By default not provided.
 
-In the following sections, we will run different scenario and check in detail the output report.
+In the following sections, we will run different scenarios and check in detail the output report.
 
 ### First example: data on excel file
 
-For the first example, we used a dataset composed of 2 slots (effort and landing) from an xlsx file (test_fictive_data1.xlsx). Associated to this data we used the definition data format built during the RECOLAPE project (recolape_definition_data_format.xlsx).
+For the first example, we used a dataset composed of 2 slots (effort and landing) from a xlsx file (test_fictive_data1.xlsx). Associated with this data we used the definition data format built during the RECOLAPE project (recolape_definition_data_format.xlsx).
 
 Now, run the following lines (you need to adapt parameters, especially paths, to your configuration):
 
@@ -98,7 +98,7 @@ result_checking1 <- checking_data(obj = "path_test_fictive_data1.xlsx",
 
 #### Checking of the R console
 
-It's very important to take a look in the R console, to see what append and if the function return informations, warnings or erros. For our example, you should have this in the R console:
+It's very important to take a look at the R console, to see what appends and if the function return information, warnings or errors. For our example, you should have this in the R console:
 
 ```{r checking_data_example1_results, echo=FALSE}
 cat(paste("(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the format definition file."), 
@@ -114,33 +114,33 @@ cat(paste("(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the
     sep = "\n")
 ```
 
-The first line give to us an information. When you put a definition data format in the function, a verification was done througth a sub function "read_format_db". This sub function check if the definition data format was relevant. Here, it seems that the sheet "codelist_vessel" was empty but cited in a slot definition. Furthermore, the information was repeated 3 times. If we check in our file we can see that the "codelist_vessel" was specify in the 3 slot definition: effort_table, landing_table and sampling_table.
+The first line gives to us some information. When you put a definition data format in the function, verification was done through a sub function "read_format_db". This sub function check if the definition data format was relevant. Here, it seems that the sheet "codelist_vessel" was empty but cited in a slot definition. Furthermore, the information was repeated 3 times. If we check in our file, we can see that the "codelist_vessel" was specified in 3 slots definition: effort_table, landing_table and sampling_table.
  
-Lines number 4 and 5 says that the function imported succefully a definition data format and data.
+Lines number 4 and 5 says that the function imported successfully a definition data format and data.
 
-The next following lines explain to users what the function doing. Here we can see that 2 slots were founding (effort and landing) and 1 was missing (sampling). Indeed in the data file provided we have only these 2 slots. This case could be appended for example where you a very large dataset. If you launch all your data through the function, you could saturate R software and collapse it. It could a better option to split your data in multiple datasets (we will see that in the seconde example).
+The next following lines explain to users what the function doing. Here we can see that 2 slots were founding (effort and landing) and 1 was missing (sampling). Indeed, in the data file provided we have only these 2 slots. This case could be appended for example where you a very large dataset. If you launch all your data through the function, you could saturate R software and collapse it. It could a better option to split your data in multiple datasets (we will see that in the seconde example).
 
 #### Checking outputs
 
-Now let check our outputs. There are in the reporting directory (specify in the parameter "report_dir" of the function below) and her names are built througth a concatenation between data name, time when the function begin to run and information on global content of the file. In anycase we 4 kinds of csv files:
+Now let check our outputs. There are in the reporting directory (specify in the parameter "report_dir" of the function below) and her names are built through a concatenation between data name, time when the function begins to run and information on global content of the file. In any case, we 4 kinds of csv files:
 
-- a meta.csv file (metadata) which bring global information on definition data format used (name and version) and other information like output format and location.
-- a str.csv file with information on the structure of data imported and more precisely if data are according to the structure define in the definition data format (all slots defined are provided ? same question for the columns associated). 
-- a data.csv file with a summarize, by slot, of tests applied on data.
-- one or more (in relation with the number of slot founded in the data/definition data format) slot.csv file with results of each tests/verifications (VALID or INVALID) made on every data.
+- A meta.csv file (metadata) which bring global information on definition data format used (name and version) and other information like output format and location.
+- A str.csv file with information on the structure of data imported and more precisely if data are according to the structure define in the definition data format (all slots defined are provided ? same question for the columns associated). 
+- A data.csv file with a summarize, by slots, of tests applied to data.
+- One or more (in relation to the number of slots founded in the data/definition data format) slot.csv file with results of each test/verification (VALID or INVALID) made on every data.
 
-Structure and data reports have the same file strucutre: 
+Structure and data reports have the same file structure: 
 
-- "test" column identify which test/control was appplied on data.
-- "result" and "message" columns are associated of test/control output. The first could have 3 modalities with importance increasing: OK, INFO or ERROR. The second provide complementary information, usefull to more understand the test/control output. 
+- "test" column identify which test/control was applied on data.
+- "result" and "message" columns are associated with tests/controls output. The first could have 3 modalities with importance increasing: OK, INFO or ERROR. The second provide complementary information, useful to more understand the test/control output. 
 
-In this example, all mistakes included in our data are highlighting. Take a look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.
+In this example, all mistakes included in our data are highlighting. Look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.
 
 ### Second example: data on csv file
 
-For this second example, we used the same definition data format like before (recolape_definition_data_format.xlsx) but associated to data in a csv file (by analogy composed of one slot, "sampling").
+For this second example, we used the same definition data format as before (recolape_definition_data_format.xlsx) but associated with data in a csv file (by analogy composed of one slot, "sampling").
 
-For this example, run theses lines in R console:
+For this example, run these lines in R console:
 
 ```{r checking_data_example2, eval = FALSE, include = TRUE}
 result_checking2 <- checking_data(obj = "path_test_fictive_data2.csv",
@@ -151,7 +151,7 @@ result_checking2 <- checking_data(obj = "path_test_fictive_data2.csv",
 
 #### Checking of the R console
 
-Like before, the R console provide usefull information of what append:
+Like before, the R console provides useful information of what append:
 
 ```{r checking_data_example2_results, echo=FALSE}
 cat(paste("(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the format definition file."), 
@@ -168,10 +168,10 @@ cat(paste("(INFO) Empty enumeration table (code list) \"codelist_vessel\" in the
     sep = "\n")
 ```
 
-As we expected, only the table "sampling" was found. For a description of the other outputs you can take a look to the previous section ([Checking of the R console example 1](#checking-of-the-r-console)).
+As we expected, only the table "sampling" was found. For a description of the other outputs, you can look to the previous section ([Checking of the R console example 1](#checking-of-the-r-console)).
 
 #### Checking outputs
 
-For this case, we can see 4 outputs: meta.csv file, str.csv,file, data.csv file and one file called slot_sampling.csv.
+In this case, we can see 4 outputs: meta.csv file, str.csv file, data.csv file and one file called slot_sampling.csv.
 
-Like for the previous example, mistakes included in the "sampling" data are identified. For example, there are troubles with the codelist of the column "flag_country" ("TOF" code are not a valid code according to the definition data format associated). Like before, take a look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.
+Like the previous example, mistakes included in the "sampling" data are identified. For example, there are troubles with the codelist of the column "flag_country" ("TOF" code are not a valid code according to the definition data format associated). Like before, look at outputs reports str.csv and data.csv for identified where problems are, and if necessary, use the slot report for focusing on data associated.

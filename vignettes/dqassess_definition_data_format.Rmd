@@ -25,33 +25,33 @@ vignette: >
 	- [Text category](#text-category)
 	- [Date category](#date-category)
 	
-# Package dqassess: definition data format, description and utilisation
+# Package dqassess: definition data format, description and utilization
 
 ## Using a definition data format
 
-All controls, and more generally verifications process, gravite around a definition data format. This element contains metadata and all the informations necessary to define your data. For example, this definition format was able to answers to the kind of questions:
+All controls, and more generally verification process, are focusing around a definition data format. This element contains metadata and all the information necessary to define your data. For example, this definition format was able to answers to the kinds of questions:
 
-- what is the structure of my data? Have I got several tables?
-- I there are, what is the relations between my data?
-- what is the type of my data? numeric, codelist, free text?
+- What is the structure of my data? Do I have several tables?
+- I there are, what are the relations between my data?
+- What is the type of my data? numeric, codelist, free text?
 - ...
 
-For explain how we can make and read this definition data format, we will use as example, the data from the RECOLAPE datacall. The caracteristics of the data collected were descibre in the following document (put link here).
+To explain how we can make and read this definition data format, we will use as an example, the data from the RECOLAPE datacall. The characteristics of the data collected were described in the following [document](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_data_call.xlsx).
 
-First of all, we will use a template for create an empty definition data format. This template, provide the squeleton or the initial architecture of the format definition. To have it, launch the code below:
+First, we will use a template for creating an empty definition data format. This template, provide the squeleton or the initial architecture of the format definition. To have it, launch the code below:
 
 ```{r build_format_db, eval = FALSE, include = TRUE}
 format_db_empty <- build_template_format_db(format_name = "name_format") 
 ```
 
-This function create a R list. If you want to export it (in xlsx or xls format), you could use the function below:
+This function create an R list. If you want to export it (in xlsx or xls format), you could use the function below:
 
 ```{r write_format_db_excel, eval = FALSE, include = TRUE}
 # Don't forget to check function documentation with ?write_format_db_excel or help(write_format_db_excel)
 write_format_db_excel(format_db = format_db_empty)
 ```
 
-You can see an example of the empty template of the defintion data format [here](https://github.com/OB7-IRD/dqassess/raw/master/data/template_definition_data_format.xlsx) and the example of the defintion data format for the RECOLAPE datacall [here](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx).
+You can see an example of the empty template for the definition data format [here](https://github.com/OB7-IRD/dqassess/raw/master/data/template_definition_data_format.xlsx) and the example of the definition data format for the RECOLAPE data call [here](https://github.com/OB7-IRD/dqassess/raw/master/data/recolape_definition_data_format.xlsx).
 
 The last basic command to know is if you want to read an existing definition data format:
 
@@ -61,26 +61,26 @@ format_db <- read_format_db(input_file_path = "path_definition_data_format")
 
 ### Definition data format architecture
 
-In this section, we will explain the different sheets of the definition data format, thourght the empty template and the format definition for the RECOLAPE datacall.
+In this section, we will explain the different sheets of the definition data format, though the empty template and the format definition for the RECOLAPE data call.
 
 #### Sheet "format_infos"
 
-The first sheet, "format_infos", contains the name of the definition data format (colum "format_name") and the indication of the format's version (colum "format_version").
+The first sheet, "format_infos", contains the name of the definition data format (column "format_name") and the indication of the format's version (column "format_version").
 
-Even if the colum "format_name" doesn't need a specific explanation, this parameter is the opportunity to introduce the notion of code style or notation style. Good writing style is like using correct punctuation: you can manage without it, but it sure makes things easier to read and especially avoid conflicts. Several rules and framework exist for maximization compatibility of your text. Here, we are only speaking about the most common advice :
+Even if the column "format_name" does not need a specific explanation, this parameter is the opportunity to introduce the notion of code style or notation style. Good writing style is like using correct punctuation: you can manage without it, but it sure makes things easier to read and especially avoid conflicts. Several rules and framework exist for maximization compatibility of your text. Here, we are only speaking about the most common advice:
 
-- use significant word: use only short words, not sentence, which is representative of your global idea. For example, a good format name should inform the reader of the field of the definition data format without having to read if. 
-- use short sentence: shorter it will be easier to understand you text will be ! 
-- avoid specific characters (, ; . : ! ? % & ( ) # / * etc.), diacritics (accent, cedilla, etc.) and empty spaces (replace it by _). These kinds of elements should bring incompatibility and crash functions or code launch.
+- Use significant words: use only short words, not sentence, which is representative of your global idea. For example, a good format name should inform the reader of the field of the definition data format without having to read it. 
+- Use short sentences: shorter it will be easier to understand you text will be! 
+- Avoid specific characters (, ; . : ! ? % & ( ) # / * etc.), diacritics (accent, cedilla, etc.) and empty spaces (replace it by _). These kinds of elements should bring incompatibility and crash functions or code launch.
 
-Dealing with the colum "format_version", there's no imposed rule, just like the writing style, but here we decide to use specific semantic versioning : <major>.<minor>.<patch>
+Dealing with the colum "format_version", there's no imposed rule, just like the writing style, but here we decide to use specific semantic versioning: <major>.<minor>.<patch>
 The first number (<major>) is related to a major updated. It's when you have added many new features or conceptual changes impacted whose directly to the user interface (typically the new user interface is not compatible with the previous). The second number (<minor>)  is when you add functionality in a backwards-compatible manner. The third number (<patch>) is related to bug resolutions and more preciously when you make backwards-compatible bug fixes. If you want to know more about this kind of thing, you should go on [Semantic Versioning](http://semver.org)  or [X.Org](http://www.x.org/releases/X11R7.7/doc/xorg-docs/Versions.html). 
 
 You can modify the version throught the parameter "format_version" (default on 0.1.0) in the function "build_format_db".
 
 #### Sheet "slot"
 
-The second sheet, "slot", contain all the table of your dataset. Each table is called a **slot**.
+The second sheet, "slot", contain all the tables of your dataset. Each table is called a **slot**.
 
 In the RECOLAPE datacall example, the structure of the slot is that:
 
@@ -90,28 +90,28 @@ In the RECOLAPE datacall example, the structure of the slot is that:
 | landing   | TRUE      | landing_table    |
 | sampling  | TRUE      | sampling_table   |
 
-We have 3 slots (=tables), each slot is mandatory (if not we should have FALSE as argument) and the name of the slot in the definition data format is indicated in the definition_table column. We will see that in the next section, but all these slots need a sheet named in according to the definition_table modalities.
+We have 3 slots (=tables), each slot is mandatory (if not we should have FALSE as an argument) and the name of the slot in the definition data format is indicated in the definition_table column. We will see that in the next section, but all these slots need a sheet named according to the definition_table modalities.
 
 #### Sheet "slots_hierarchy"
 
-This sheet indicates is there are any relations between your slots. This information is related to the cardinality of your data. In database design and more precisely in the relation model, tables can be related as "one to many", "many to many", "one to one", "zero to many", ect... This kind of information leads very powerful constraints and ensure the consistency of your data.
+This sheet indicates is there being any relations between your slots. This information is related to the cardinality of your data. In database design and more precisely in the relation model, tables can be related as "one to many", "many to many", "one to one", "zero to many", ect... This kind of information leads very powerful constraints and ensure the consistency of your data.
 
-For understanding this specification, which seems complicated for several people foreign in the field of databases, Take a look on our data as an example. Here we have 3 slots and potentially 0 relation between them or a maximum of 6 relations (if each slot is related to another, on both sides). Like we said before, we can have a lot kind of relationship between data, but we should consider (for simplification) two levels:
+For understanding this specification, which seems complicated for several people foreign in the field of databases. Look at our data as an example. Here we have 3 slots and potentially 0 relation between them or a maximum of 6 relations (if each slot is related to another, on both sides). Like we said before, we can have a lot kind of relationship between data, but we should consider (for simplification) two levels:
 
-- "one to many" relationship, this is a generalization of the major case (for example, a relation "one to one" is a specific case where many is egal to zero).
-- "zero to many" relationship (this is the same argument as the relation before).
+- "One to many" relationship, this is a generalization of the major case (for example, a relation "one to one" is a specific case where many is equal to zero).
+- "Zero to many" relationship (this is the same argument as the relation before).
 
-For better understand a relation between two, a solution is to try to make a sentence which explain the relation. Let take an example between the effort slot and the landing slot. In our case, an effort data could be related to no landing (if non-catch during a set for example) or several landings (if we have a partial landing). Relation between the effort slot and the landing slot is a "zero to many" type. Similarly, a landing should be associated with one and only one effort (if landing append that mean an effort related to). The relation between the landing and the effort is a "one to many" type (if we generalize, with many egal to one). In the definition data format, this relation can be specified like that:
+For better understand a relation between two, a solution is to try to make a sentence which explain the relation. Let take an example between the effort slot and the landing slot. In our case, an effort data could be related to no landing (if non-catch during a set for example) or several landings (if we have a partial landing). Relation between the effort slot and the landing slot is a "zero to many" type. Similarly, a landing should be associated with one and only one effort (if landing append that mean an effort related to). The relation between the landing and the effort is a "one to many" type (if we generalize, with many equal to one). In the definition data format, this relation can be specified like that:
 
 | link           | level_1      | level_2   | level_3 | level_4 | level_5 | level_6        | level_7 | level_8 |
 |----------------|--------------|-----------|---------|---------|---------|----------------|---------|---------|
 | landing_effort | flag_country | vessel_id | year    | month   | area    | fishing_level7 |         |         |
 
-To define a relation in the definition data format, you don't need to specify what kind of relation is but only direction of the link separated by "_" (here landing to effort). The different levels are all the variables involved in the relation.
+To define a relation in the definition data format, you do not need to specify what kind of relation is but only direction of the link separated by "_" (here landing to effort). The different levels are all the variables involved in the relation.
 
-For now, the following verification functions can use to check "one to many" relations. But the code was thought to be upgradable and it's possible to add more verification type (also specific verification like "one to one" associated with her constraints). Furthermore, the default template of the sheet make available 8 levels of hierarchies, but the function could manage more than 8. Just add columns and keep the current nomenclature ("level_x"). Finally, if your data doesn't present relationship (lucky you are !), just leave this sheet with the empty template. 
+For now, the following verification functions can use to check "one to many" relations. However the code was thought to be upgradable and it's possible to add more verification type (also specific verification like "one to one" associated with her constraints). Furthermore, the default template of the sheet make available 8 levels of hierarchies, but the function could manage more than 8. Just add columns and keep the current nomenclature ("level_x"). Finally, if your data does not present relationship (lucky you are!), just leave this sheet with the empty template. 
 
-With our data, we can underscore two more relation "one to many":
+With our data, we can underscore two more relations, "one to many":
 
 | link             | level_1      | level_2   | level_3   | level_4 | level_5        | level_6        | level_7     | level_8      |
 |------------------|--------------|-----------|-----------|---------|----------------|----------------|-------------|--------------|
@@ -120,14 +120,14 @@ With our data, we can underscore two more relation "one to many":
 
 Here we have:
 
-- a sampling could have one and only one landing associated ("one to many" relationship).
-- a sampling could have one or several effort data associated ("one to many" relationship in case of partial landings).
+- A sampling could have one and only one landing associated ("one to many" relationship).
+- A sampling could have one or several effort data associated ("one to many" relationship in case of partial landings).
 
 #### Sheet slot definition
 
 The definition data format contains at least one slot definition in relation to slot define in the sheet "slot".
 
-For our example, we would describre the slot definition of the slot "sampling". You could also find the slot definition of the other slot in the definition data format of RECOLAPE datacall.
+For our example, we would describe the slot definition of the slot "sampling". You could also find the slot definition of the other slot in the definition data format of RECOLAPE data call.
 
 For the slot "sampling"" we have the slot definition "sampling_table":
 
@@ -161,7 +161,7 @@ Her we have 6 column:
 - "column_name", names of the column in our data.
 - "nullable", data in the column could be null (TRUE) or not (FALSE).
 - "mandatory", column are mandatory (TRUE) or not (FALSE).
-- "pk", the column is a primary key (TRUE) or not (FALSE). In relational databases, a primary key is one or a concatenation of variables that uniquely specify an element (a row) in a slot. A primary key couldn't be repeated and have to be unique. This is a very important parameter in the database model.
+- "pk", the column is a primary key (TRUE) or not (FALSE). In relational databases, a primary key is one or a concatenation of variables that uniquely specify an element (a row) in a slot. A primary key could not be repeated and have to be unique. This is a very important parameter in the database model.
 - "type_name", this is the name of the type of data present in the associated column.
 - "category", category of data present in the associated column.
 
@@ -169,15 +169,15 @@ All of this information will be used for different checks and verification (see 
 
 #### Categories definitions
 
-In the previous sheet, we have define several categories types. These categories apply specifications on data associated.
+In the previous sheet, we have defined several categories types. These categories apply specifications on data associated.
 
 For now, there are 5 categories possible: codelist, numeric, logical, text and date.
 
 ##### Codelist category
 
-In our example, we have several codelist category. A codelist is a list of codes or meanings that represent the only allowed values for a particular data item. All the codelist type are reference in the sheet "codelist_types" and link column "type_name" of the different sheet slot definition with a column "enumeration_table" and a sheet "enumeration_table". This last sheet contains all the codes/meanings of the codelist associated and a description of it.
+In our example, we have several codelist category. A codelist is a list of codes or meanings that represent the only allowed values for a particular data item. All the codelist type are referenced in the sheet "codelist_types" and link column "type_name" of the different sheet slot definition with a column "enumeration_table" and a sheet "enumeration_table". This last sheet contains all the codes/meanings of the codelist associated and a description of it.
 
-On the "sampling_table" use before as example (the first table are the "codelist_types" and the second table are a focus on "codelist_specie"):
+On the "sampling_table" use before as an example (the first table is the "codelist_types" and the second table are a focus on "codelist_specie"):
 
 | type_name               | enumeration_table           |
 |-------------------------|-----------------------------|
@@ -200,11 +200,11 @@ On the "sampling_table" use before as example (the first table are the "codelist
 | SKJ  | Katsuwonus pelamis |
 | BET  | Thunnus obesus     |
 
-Warning ! For increase the generalization of this package and is appropriation by everyone, a choice was made to let the user complete and update the template of the definition data format. In return, it's very important to keep all the structure of the sheet (column name for example). If you add another codelist sheet (in our example we should have 11 codelist sheets, one for each "type_name") be carefull to use the same template as the sheet "codelist_example" in the empty definition data format.
+Warning! To increase the generalization of this package and is appropriation by everyone, a choice was made to let the user complete and update the template of the definition data format. In return, it's very important to keep all the structure of the sheet (column name for example). If you add another codelist sheet (in our example we should have 11 codelist sheets, one for each "type_name") be careful to use the same template as the sheet "codelist_example" in the empty definition data format.
 
 ##### Numeric category
 
-In our example we have 7 numeric categories:
+In our example, we have 7 numeric categories:
 
 | type_name              | is_integer | min  | max  |
 |------------------------|------------|------|------|
@@ -216,11 +216,11 @@ In our example we have 7 numeric categories:
 | length_class_type      | TRUE       | 10   | 300  |
 | number_at_length_type  | FALSE      | 0,1  | 500  |
 
-Like for the codelist category before, all information about this category are reference in the sheet "numeric_types" (with a link between with the sheet slot definition throught "type_name"). Furthermore, we have 3 new column:
+Like in the codelist category before, all information about this category is referenced in the sheet "numeric_types" (with a link between with the sheet slot definition throught "type_name"). Furthermore, we have 3 new column:
  
-- "is_integer", does data stock in the column are integer (decimals not allowed, TRUE) or not (FALSE)?
+- "is_integer", does data stock in the column are integers (decimals not allowed, TRUE) or not (FALSE)?
 - "min", minmum value (included) of our data. You have to fill NA in the cell if not applicable.
-- "max", maximum value (included) of our data. You have to fill NA in the cell if not applicabe.
+- "max", maximum value (included) of our data. You have to fill NA in the cell if not applicable.
 
 ##### Logical category
 
@@ -229,19 +229,19 @@ A logical argument in R only contains TRUE or FALSE values. In R:
 - TRUE values could be T, TRUE, True or true.
 - FALSE values could be F, FALSE, False or false.
 
-Like before, all information about the logical categories are reference in the sheet "logical_types".
+Like before, all information about the logical categories are referenced in the sheet "logical_types".
 
-In our example, we don't have the kind of category but the template of the sheet "logical_types" could be like that:
+In our example, we do not have the kind of category but the template of the sheet "logical_types" could be like that:
 
 | type_name   |
 |-------------|
 | yes_no_type |
 
-In the sheet we see that we have only the information of the "type_name" (link to the sheet slot definition associated). We could think that this sheet should be not relevant because we don't perform any check, except the verification of logical format and we could done that directly from the information of the sheet slot definition associated. This choose was made in a perspective of the evolution of the package: a new function/checks could be easier incremented and not need, a priori, a modification of the definition data format.
+In the sheet, we see that we have only the information of the "type_name" (link to the sheet slot definition associated). We could think that this sheet should not be relevant because we do not perform any check, except the verification of logical format and we could do that directly from the information of the sheet slot definition associated. This chooses was made from a perspective of the evolution of the package: a new function/check could be easier incremented and not need, a priori, a modification of the definition data format.
 
 ##### Text category
 
-All the information about the text categories are reference in the sheet "text_types".
+All the information about the text categories are referenced in the sheet "text_types".
 
 For our example, we have these data referenced as text:
 
@@ -251,11 +251,11 @@ For our example, we have these data referenced as text:
 | trip_code_type      |
 | station_number_type |
 
-Like for the logical category and for the same reason, we have only the information of the "type_name". 
+Like in the logical category and for the same reason, we have only the information of the "type_name". 
 
 ##### Date category
 
-The last catergory is the date category. In our example, we have one data category:
+The last category is the date category. In our example, we have one data category:
 
 | type_name | time_zone_utc | format_1 | format_2 | format_3 | format_4 |
 |-----------|---------------|----------|----------|----------|----------|
@@ -264,15 +264,15 @@ The last catergory is the date category. In our example, we have one data catego
 We can find:
 
 - "data_type", link with the sheet slot definition.
-- "time_zone_utc", data are stock in UTC (Coordinated Universal Time, TRUE) or not (FALSE). For now all the data in date format have to be in UTC (by default in the verification function associated). But it could be possible, if necessary, to update the function and add a dynamic parameter for a specific time zone.
-- "format_x", specification of the date format. The date verification use the function ["parse_date_time"](https://www.rdocumentation.org/packages/lubridate/versions/1.7.4/topics/parse_date_time) of the package lubridate. This function have several specific formats and inherited formats in relation with the function ["strptime"](https://www.rdocumentation.org/packages/base/versions/3.5.3/topics/strptime) of base package. For more details and formats specifications you could see the help of two functions. Furthermore, the list below contains the most commont format used with large pelagic data:
+- "time_zone_utc", data are stock in UTC (Coordinated Universal Time, TRUE) or not (FALSE). For now all the data in date format have to be in UTC (by default in the verification function associated). However, it could be possible, if necessary, to update the function and add a dynamic parameter for a specific time zone.
+- "format_x", specification of the date format. The date verification use the function ["parse_date_time"](https://www.rdocumentation.org/packages/lubridate/versions/1.7.4/topics/parse_date_time) of the package lubridate. This function have several specific formats and inherited formats in relation to the function ["strptime"](https://www.rdocumentation.org/packages/base/versions/3.5.3/topics/strptime) of the base package. For more details and format specifications, you could see the help of two functions. Furthermore, the list below contains the most common format used with large pelagic data:
     - y or Y, the first one is year without century (00-99 or 0-99) and the second is year with century (only years 0:9999 are accepted). In the function used here, year matches with century so you can use either indifferently.
     - m, month as decimal number (01-12 or 1-12). 
-    - b, abbreviated or full month name in the current locale. Be carreful because these parameters could be affected by R options of localisation. Here onlyEnglish month names are understands
+    - b, abbreviated or full-month names in the current locale. Be careful because these parameters could be affected by R options for localization. Here only English month names are understood.
     - d, day of the month as decimal number (01-31 or 0-31).
     - H, hours as decimal number (00-24 or 0-24).
     - M, minute as decimal number (00–59 or 0–59).
-    - S, second as decimal number (00–61 or 0–61), allowing for up to two leap-seconds (but POSIX-compliant in R implementations will ignore leap seconds).
-    - q, quarter of the month (1-4). A specification was made for format composed format with quarter. For now the most common was implemented and should follow template like "yQq" or "yqq" (with allways the last q the quarter of the month, for example 2018Q1 or 2018q1).
+    - S, second as decimal number (00–61 or 0–61), allowing for up to two leap seconds (but POSIX-compliant in R implementations will ignore leap seconds).
+    - q, quarter of the month (1-4). A specification was made for format composed format with quarter. For now, the most common was implemented and should follow template like "yQq" or "yqq" (with always the last q the quarter of the month, for example 2018Q1 or 2018q1).
 
-Like for sheet "slots_hierarchy", you can added any number of date format (incrementing by one the formats). Be sure to leave column empty if you don't whant to use it (or delete it).
+Like sheet "slots_hierarchy", you can add any number of date format (incrementing by one the formats). Be sure to leave column empty if you do not want to use it (or delete it).
