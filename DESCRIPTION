@@ -1,6 +1,6 @@
 Package: dqassess
 Type: Package
-Title: Data quality assessment
+Title: Data Quality ASSESSment
 Version: 1.0.0
 Authors@R: c(
     person("Mathieu", "Depetris", email = "mathieu.depetris@@ird.fr", role = c("aut", "cre")),
