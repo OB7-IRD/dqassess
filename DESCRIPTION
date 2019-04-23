@@ -3,8 +3,8 @@ Type: Package
 Title: Data Quality ASSESSment
 Version: 1.0.0
 Authors@R: c(
-    person("Mathieu", "Depetris", email = "mathieu.depetris@@ird.fr", role = c("aut", "cre")),
-    person("Norbert", "Billet", email = "norbert.billet@@ifremer.fr", role = "aut"))
+    person("Mathieu", "Depetris", email = "mathieu.depetris@ird.fr", role = c("aut", "cre")),
+    person("Norbert", "Billet", email = "norbert.billet@ifremer.fr", role = "aut"))
 Maintainer: Mathieu Depetris <mathieu.depetris@ird.fr>
 Description: This package contain serveral functions in order to evaluate the conformity of data against a data format description.
   It attempt to help on data error detection concerning for example the data structures, formats or code lists.
